@@ -3,15 +3,6 @@
   "outputDirectory": ".",
   "cleanUrls": true,
   "trailingSlash": true,
-  "headers": [
-    {
-      "source": "/game-engine/(.*)",
-      "headers": [
-        { "key": "Cross-Origin-Embedder-Policy", "value": "credentialless" },
-        { "key": "Cross-Origin-Opener-Policy", "value": "same-origin" }
-      ]
-    }
-  ],
   "rewrites": [
     {
       "source": "/game-engine/",
