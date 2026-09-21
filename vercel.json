@@ -1,20 +1,20 @@
 {
-  "buildCommand": null,
-  "outputDirectory": ".",
-  "cleanUrls": true,
-  "trailingSlash": true,
   "rewrites": [
     {
-      "source": "/game-engine/",
+      "source": "/game-engine",
       "destination": "/game-engine/index.html"
     },
     {
-      "source": "/vcsky/:path*",
-      "destination": "https://vc.quenq.com/vcsky/:path*"
+      "source": "/vcsky/(.*)",
+      "destination": "https://vc.quenq.com/vcsky/$1"
     },
     {
-      "source": "/assets/:path*",
-      "destination": "https://vc.quenq.com/assets/:path*"
+      "source": "/assets/modules/(.*)",
+      "destination": "https://vc.quenq.com/assets/modules/$1"
+    },
+    {
+      "source": "/assets/js/(.*)",
+      "destination": "https://vc.quenq.com/assets/js/$1"
     }
   ]
 }
