@@ -543,7 +543,7 @@ const revc_ini = (() => {
     return revc_iniDefault;
 })();
 
-function void(0) /* ads disabled */ {
+function _adsDisabled() {
     setTimeout(() => {
         try {
             if (
