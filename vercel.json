@@ -1,7 +1,8 @@
 {
   "rewrites": [
     {
-      "source": "/game-engine",
+      "source": "/",
+      "has": [{ "type": "host", "value": "vc.quenqq.com" }],
       "destination": "/game-engine/index.html"
     }
   ]
