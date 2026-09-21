@@ -1,0 +1,844 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <title>Quenq GTA Vice City Online - Play Quenq Vice City Free | QUENQQ</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Play Quenq GTA Vice City online free in your browser. Quenq Vice City runs the full 1986 game with no downloads. All 60+ missions, cheat codes, saves, and gamepad support." />
+    <meta name="keywords" content="quenq vice city, quenq gta vice city, quenq vice city browser, gta vice city online, play gta vice city online free, gta vice city browser game" />
+    <meta name="robots" content="index,follow" />
+    <meta name="theme-color" content="#ff2d95" />
+    <link rel="canonical" href="https://quenqq.com/games/quenq-gta-vice-city/" />
+
+    <meta property="og:title" content="Quenq GTA Vice City - Play Quenq Vice City Online Free" />
+    <meta property="og:description" content="Play Quenq GTA Vice City online free. No downloads. Quenq Vice City runs the full 1986 game with 60+ missions, all cheats, save slots, and gamepad support." />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://quenqq.com/games/quenq-gta-vice-city/" />
+    <meta property="og:site_name" content="QUENQQ" />
+    <meta property="og:image" content="https://quenqq.com/images/gta-vice-city.webp" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="675" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Quenq GTA Vice City - Play Quenq Vice City Online Free" />
+    <meta name="twitter:description" content="Play Quenq GTA Vice City online free. No downloads, no installs. Quenq Vice City full game in your browser." />
+    <meta name="twitter:image" content="https://quenqq.com/images/gta-vice-city.webp" />
+
+    <link rel="icon" href="/images/logo.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/images/logo-icon.webp" />
+    <meta name="msapplication-TileImage" content="/images/logo-icon.webp" />
+    <meta name="msapplication-TileColor" content="#0a0a0a" />
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Russo+One&display=swap" rel="stylesheet" />
+    <link href="/css/styles.css" rel="stylesheet" type="text/css" />
+    <style>
+        .app-container { width: 95%; margin: 0 auto 20px auto; }
+        .hero-banner {
+            width: 100%;
+            position: relative;
+            overflow: hidden;
+            border-radius: 8px 8px 0 0;
+        }
+        .hero-banner img {
+            width: 100%;
+            height: auto;
+            display: block;
+            object-fit: cover;
+            max-height: 280px;
+        }
+        .hero-banner .hero-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            padding: 20px 24px;
+            background: linear-gradient(transparent, rgba(0,0,0,0.85));
+        }
+        .hero-banner .hero-overlay h2 {
+            font-family: var(--font-heading);
+            color: #fff;
+            font-size: 1.4rem;
+            margin: 0;
+            text-shadow: 0 0 15px rgba(255,45,149,0.5);
+        }
+        .hero-banner .hero-overlay p {
+            color: rgba(255,255,255,0.75);
+            font-size: 0.9rem;
+            margin: 4px 0 0;
+        }
+        #app-iframe {
+            width: 100%;
+            aspect-ratio: 16/9;
+            max-height: 90vh;
+            background-color: #000;
+            border-radius: 0 0 5px 5px;
+            overflow: hidden;
+            margin: 0 auto;
+            border: none;
+            display: block;
+        }
+        .cnt-info h2 {
+            font-family: var(--font-heading);
+            color: var(--accent);
+            margin: 28px 0 12px;
+            font-size: 1.15rem;
+            text-shadow: var(--neon-glow);
+        }
+        .cnt-info h3 {
+            color: #fff;
+            margin: 18px 0 8px;
+            font-size: 1rem;
+            font-weight: 700;
+        }
+        .controls-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 15px 0;
+            font-size: 0.9rem;
+        }
+        .controls-table th {
+            background: rgba(255,45,149,0.15);
+            color: var(--accent);
+            padding: 10px 12px;
+            text-align: left;
+            border: 1px solid var(--border-color);
+            font-family: var(--font-heading);
+            font-weight: 400;
+            font-size: 0.85rem;
+        }
+        .controls-table td {
+            padding: 8px 12px;
+            border: 1px solid var(--border-color);
+            color: var(--text-secondary);
+        }
+        .controls-table tr:hover td {
+            background: rgba(255,45,149,0.05);
+        }
+        .cheat-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+            gap: 10px;
+            margin: 15px 0;
+        }
+        .cheat-card {
+            background: rgba(255,45,149,0.06);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            padding: 12px;
+        }
+        .cheat-card code {
+            display: block;
+            color: var(--accent);
+            font-size: 0.95rem;
+            font-weight: 700;
+            margin-bottom: 4px;
+        }
+        .cheat-card span {
+            color: var(--text-secondary);
+            font-size: 0.85rem;
+        }
+        .tip-box {
+            background: rgba(255,45,149,0.08);
+            border-left: 3px solid var(--accent);
+            padding: 12px 16px;
+            margin: 15px 0;
+            border-radius: 0 6px 6px 0;
+            color: var(--text-secondary);
+            font-size: 0.9rem;
+        }
+        .tip-box strong { color: var(--accent); }
+        .faq-item { margin-bottom: 12px; }
+        .faq-item summary {
+            cursor: pointer;
+            color: #fff;
+            font-weight: 600;
+            padding: 8px 0;
+        }
+        .faq-item summary:hover { color: var(--accent); }
+        .faq-item p { color: var(--text-secondary); margin: 6px 0 0 16px; }
+
+        /* Live Visitor Counter */
+        .live-counter {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 8px 16px;
+            background: rgba(0,0,0,0.4);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            font-size: 0.85rem;
+            color: var(--text-secondary);
+            margin-top: 8px;
+            width: fit-content;
+        }
+        .live-dot {
+            width: 8px; height: 8px;
+            background: #4caf50;
+            border-radius: 50%;
+            box-shadow: 0 0 6px #4caf50;
+            animation: livePulse 2s infinite;
+        }
+        @keyframes livePulse {
+            0%, 100% { opacity: 1; box-shadow: 0 0 6px #4caf50; }
+            50% { opacity: 0.5; box-shadow: 0 0 12px #4caf50; }
+        }
+        .live-counter strong { color: #4caf50; font-weight: 700; }
+
+        /* Comparison Table */
+        .compare-table { width: 100%; border-collapse: collapse; margin: 15px 0; font-size: 0.9rem; }
+        .compare-table th {
+            background: rgba(255,45,149,0.15);
+            color: var(--accent);
+            padding: 10px 14px;
+            text-align: left;
+            border: 1px solid var(--border-color);
+            font-family: var(--font-heading);
+            font-weight: 400;
+            font-size: 0.85rem;
+        }
+        .compare-table td {
+            padding: 9px 14px;
+            border: 1px solid var(--border-color);
+            color: var(--text-secondary);
+        }
+        .compare-table tr:hover td { background: rgba(255,45,149,0.05); }
+        .compare-check { color: #4caf50; font-weight: 700; }
+        .compare-cross { color: #f44336; }
+        .compare-highlight { color: var(--accent); font-weight: 600; }
+
+        /* Interactive Cheat Tester */
+        .cheat-tester {
+            background: rgba(0,0,0,0.3);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+        .cheat-tester h3 {
+            font-family: var(--font-heading);
+            color: var(--accent);
+            margin: 0 0 12px;
+            font-size: 1.05rem;
+            text-shadow: var(--neon-glow);
+        }
+        .cheat-input-row {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 12px;
+        }
+        .cheat-input-row input {
+            flex: 1;
+            padding: 10px 14px;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            background: rgba(0,0,0,0.5);
+            color: #fff;
+            font-size: 1rem;
+            font-family: 'Courier New', monospace;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            outline: none;
+            transition: border-color 0.2s;
+        }
+        .cheat-input-row input:focus { border-color: var(--accent); }
+        .cheat-input-row input::placeholder { color: rgba(255,255,255,0.3); text-transform: none; letter-spacing: 0; }
+        .cheat-input-row button {
+            padding: 10px 20px;
+            background: var(--accent);
+            color: #fff;
+            border: none;
+            border-radius: 6px;
+            font-weight: 700;
+            cursor: pointer;
+            font-size: 0.9rem;
+            transition: background 0.2s;
+            white-space: nowrap;
+        }
+        .cheat-input-row button:hover { background: #e0267f; }
+        .cheat-result {
+            padding: 12px 16px;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            min-height: 20px;
+            transition: all 0.3s;
+        }
+        .cheat-result.found {
+            background: rgba(76,175,80,0.12);
+            border: 1px solid rgba(76,175,80,0.4);
+            color: #a5d6a7;
+        }
+        .cheat-result.not-found {
+            background: rgba(244,67,54,0.1);
+            border: 1px solid rgba(244,67,54,0.3);
+            color: #ef9a9a;
+        }
+        .cheat-result.idle {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid var(--border-color);
+            color: var(--text-secondary);
+        }
+        .cheat-result .cheat-name { color: var(--accent); font-weight: 700; font-family: monospace; }
+        .cheat-result .cheat-cat { font-size: 0.8rem; opacity: 0.7; margin-left: 6px; }
+    </style>
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "VideoGame",
+          "name": "Quenq GTA Vice City Online",
+          "alternateName": ["Quenq Vice City", "Quenq GTA Vice City", "GTA Vice City Browser", "GTA Vice City Online"],
+          "description": "Play Quenq GTA Vice City online free in your browser. No downloads required. Quenq Vice City runs the full 3D open world with save games, radio, cheats, and touch controls.",
+          "url": "https://quenqq.com/games/quenq-gta-vice-city/",
+          "image": "https://quenqq.com/images/gta-vice-city.webp",
+          "genre": ["Action", "Open World", "Adventure"],
+          "playMode": "SinglePlayer",
+          "applicationCategory": "GameApplication",
+          "operatingSystem": "Any (Web Browser with WebGL 2.0)",
+          "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "USD",
+            "availability": "https://schema.org/InStock"
+          }
+        },
+        {
+          "@type": "BreadcrumbList",
+          "itemListElement": [
+            { "@type": "ListItem", "position": 1, "name": "QUENQQ", "item": "https://quenqq.com/" },
+            { "@type": "ListItem", "position": 2, "name": "GTA Vice City Online", "item": "https://quenqq.com/games/quenq-gta-vice-city/" }
+          ]
+        },
+        {
+          "@type": "FAQPage",
+          "mainEntity": [
+            {
+              "@type": "Question",
+              "name": "Is Quenq Vice City free to play?",
+              "acceptedAnswer": { "@type": "Answer", "text": "Yes. Quenq Vice City is 100% free. No downloads, no sign-ups, no hidden payments. Just open the page and click Play." }
+            },
+            {
+              "@type": "Question",
+              "name": "Does GTA Vice City online save my progress?",
+              "acceptedAnswer": { "@type": "Answer", "text": "Yes. Your game saves are stored in your browser using IndexedDB. You can save and load from 8 save slots, just like the original game." }
+            },
+            {
+              "@type": "Question",
+              "name": "What browser works best for GTA Vice City online?",
+              "acceptedAnswer": { "@type": "Answer", "text": "Google Chrome or Microsoft Edge on desktop give the best performance. The game requires WebGL 2.0 support and at least 2 GB of free RAM." }
+            }
+          ]
+        }
+      ]
+    }
+    </script>
+    <script defer src="/js/main.js"></script>
+</head>
+<body>
+    <div id="global-loader" class="global-loader">
+        <img src="/images/logo.svg" alt="Loading..." class="loader-logo" draggable="false" />
+    </div>
+    <div id="wrapper">
+        <div id="head">
+            <div id="logo"><a href="/"><img alt="QUENQQ - Play GTA Vice City Online Free" src="/images/logo-wide.webp" title="QUENQQ Home" draggable="false" style="height:40px;width:auto;object-fit:contain;" /></a></div>
+            <div id="head-mid">
+                <p class="header-line1">QUENQQ</p>
+                <p class="header-line2">Play Classic GTA Games Online: Free.</p>
+            </div>
+        </div>
+        <div id="nav-H">
+            <div id="nav-H-Box">
+                <div id="butn-block">
+                    <ul>
+                        <li><a class="Butn1" href="/">Home</a></li>
+                        <li><a class="Butn1 Butn-active" href="/games/quenq-gta-vice-city/">GTA Vice City</a></li>
+                        <li><a class="Butn1" href="/about.html">About</a></li>
+                        <li><a class="Butn1" href="/blog/">Blog</a></li><li><a class="Butn1" href="/contact.html">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div id="main">
+            <div class="app-container">
+                <div class="hero-banner">
+                    <img src="/images/vice-city-banner.webp" alt="GTA Vice City Online: Play Free in Browser on QUENQQ" loading="eager" />
+                    <div class="hero-overlay">
+                        <h2>GTA Vice City Online</h2>
+                        <p>Click Play to start: No download required</p>
+                    </div>
+                </div>
+                <iframe id="app-iframe"
+                    src="/game-engine/index.html"
+                    allow="accelerometer; autoplay; bluetooth; camera; clipboard-read; clipboard-write; cross-origin-isolated; display-capture; encrypted-media; fullscreen; gamepad; geolocation; gyroscope; hid; keyboard-map; microphone; midi; screen-wake-lock; usb; web-share; xr-spatial-tracking"
+                    allowfullscreen="true">
+                </iframe>
+                <div class="player-controls">
+                    <button id="fullscreen-btn" class="action-btn">
+                        <svg viewBox="0 0 24 24"><path d="M5,5H10V7H7V10H5V5M14,5H19V10H17V7H14V5M17,14H19V19H14V17H17V14M10,17H7V14H5V19H10V17Z"></path></svg>
+                        Fullscreen
+                    </button>
+                    <button id="share-btn" class="action-btn">
+                        <svg viewBox="0 0 24 24"><path d="M18,16.08C17.24,16.08 16.56,16.38 16.04,16.85L8.91,12.7C8.96,12.47 9,12.24 9,12C9,11.76 8.96,11.53 8.91,11.3L15.96,7.2C16.5,7.69 17.21,8 18,8C19.66,8 21,6.66 21,5C21,3.34 19.66,2 18,2C16.34,2 15,3.34 15,5C15,5.24 15.04,5.47 15.09,5.7L8.04,9.8C7.5,9.31 6.79,9 6,9C4.34,9 3,10.34 3,12C3,13.66 4.34,15 6,15C6.79,15 7.5,14.69 8.04,14.2L15.17,18.35C15.12,18.58 15.08,18.79 15.08,19C15.08,20.66 16.42,22 18,22C19.66,22 21,20.66 21,19C21,17.34 19.66,16.08 18,16.08Z"></path></svg>
+                        Share
+                    </button>
+                </div>
+                <div class="live-counter">
+                    <span class="live-dot"></span>
+                    <span><strong id="live-count">0</strong> players online right now</span>
+                </div>
+            </div>
+
+            <div id="col-L">
+                <div class="cnt-box">
+                    <div class="cnt-head"><h1>Quenq GTA Vice City Online - Play Free in Your Browser</h1></div>
+                    <div class="cnt-filler">
+                        <div class="cnt-info">
+
+                            <p>Welcome to <strong>Quenq Vice City</strong>, the easiest way to play <strong>Quenq GTA Vice City online</strong> right inside your browser. No downloads. No installs. No sign-ups. Just click Play and you are in Vice City within seconds.</p>
+
+                            <p>This is the complete <strong>Quenq GTA Vice City</strong> experience powered by WebAssembly technology. Every mission, every radio station, every cheat code, every vehicle is here, exactly as you remember it.</p>
+
+                            <h2>What is Quenq GTA Vice City Online?</h2>
+
+                            <p><strong>Quenq GTA Vice City</strong> is a free browser version of the legendary 2002 open-world action game by Rockstar Games. <strong>Quenq Vice City</strong> runs entirely inside Chrome, Edge, Firefox, or Safari thanks to the open-source reVC project and WebAssembly technology. No download needed at all.</p>
+
+                            <p>You play as <strong>Tommy Vercetti</strong>, a mobster who just got out of prison after 15 years. The Forelli crime family sends Tommy to Vice City (inspired by 1980s Miami) for a drug deal, but the deal goes wrong. Tommy loses everything. Now he has to fight rival gangs, corrupt politicians, and drug lords to build his own criminal empire from scratch.</p>
+
+                            <div class="tip-box">
+                                <strong> First Time Playing?</strong> Click the game window above, then click "PLAY GAME". The game data (~120 MB) loads in your browser. After loading, click "CLICK ANYWHERE TO START". Your saves are stored safely in your browser.
+                            </div>
+
+                            <h2>Quenq Vice City Full Features List</h2>
+
+                            <ul>
+                                <li><strong>Full Game</strong> : All 60+ story missions, all side missions, all hidden packages</li>
+                                <li><strong>Save and Load</strong> : 8 save slots stored safely in your browser</li>
+                                <li><strong>All Radio Stations</strong> : Flash FM, V-Rock, Emotion 98.3, Wave 103, Fever 105, and more</li>
+                                <li><strong>All Cheats Work</strong> : Just type cheat codes on your keyboard while playing</li>
+                                <li><strong>Touch Controls</strong> : Play on phone and tablet with on-screen buttons and dual joysticks</li>
+                                <li><strong>Gamepad Support</strong> : Works with Xbox, PlayStation, or any USB/Bluetooth controller</li>
+                                <li><strong>Fullscreen Mode</strong> : Click the Fullscreen button for a clean, distraction-free experience</li>
+                                <li><strong>Free Forever</strong> : No subscriptions, no ads, no hidden costs. Ever.</li>
+                            </ul>
+
+                            <h2>Browser Version vs Original PC</h2>
+
+                            <p>Wondering how the <strong>QUENQQ browser version</strong> compares to the original 2002 PC release? Here is a side-by-side breakdown:</p>
+
+                            <table class="compare-table">
+                                <thead>
+                                    <tr>
+                                        <th>Feature</th>
+                                        <th>Original PC (2002)</th>
+                                        <th>QUENQQ Browser</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr><td><strong> Price</strong></td><td>$9.99+</td><td><span class="compare-highlight">Free Forever</span></td></tr>
+                                    <tr><td><strong> Download</strong></td><td>1.5 GB install</td><td><span class="compare-highlight">0 MB, streams in browser</span></td></tr>
+                                    <tr><td><strong> Install</strong></td><td>Required (10+ min)</td><td><span class="compare-check"> None, play instantly</span></td></tr>
+                                    <tr><td><strong> Saves</strong></td><td>Local files on C: drive</td><td><span class="compare-check"> Browser storage, 8 slots</span></td></tr>
+                                    <tr><td><strong> Missions</strong></td><td><span class="compare-check"> 60+ missions</span></td><td><span class="compare-check"> 60+ missions (identical)</span></td></tr>
+                                    <tr><td><strong> Cheats</strong></td><td><span class="compare-check"> All cheats</span></td><td><span class="compare-check"> All cheats (same codes)</span></td></tr>
+                                    <tr><td><strong> Radio</strong></td><td><span class="compare-check"> 9 stations</span></td><td><span class="compare-check"> 9 stations, full audio</span></td></tr>
+                                    <tr><td><strong> Controller</strong></td><td>DirectInput only</td><td><span class="compare-check"> Xbox, PS, and any gamepad</span></td></tr>
+                                    <tr><td><strong> Touch</strong></td><td><span class="compare-cross"> Not supported</span></td><td><span class="compare-check"> Dual joysticks + HUD buttons</span></td></tr>
+                                    <tr><td><strong> Platforms</strong></td><td>Windows only</td><td><span class="compare-highlight">Any device with a browser</span></td></tr>
+                                    <tr><td><strong> Account</strong></td><td>Steam or Rockstar required</td><td><span class="compare-check"> No account needed</span></td></tr>
+                                    <tr><td><strong> Offline</strong></td><td><span class="compare-check"> Always</span></td><td><span class="compare-check"> After first load</span></td></tr>
+                                </tbody>
+                            </table>
+
+                            <h2>Keyboard and Mouse Controls</h2>
+
+                            <p>Here are all the <strong>PC controls for GTA Vice City</strong> in the browser. These work exactly like the original game:</p>
+
+                            <table class="controls-table">
+                                <thead>
+                                    <tr>
+                                        <th>Action</th>
+                                        <th>On Foot</th>
+                                        <th>In Vehicle</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <tr><td><strong>Move / Steer</strong></td><td>W A S D or Arrow Keys</td><td>W (Gas), S (Brake), A / D (Steer)</td></tr>
+                                    <tr><td><strong>Attack / Fire</strong></td><td>Left Click or Left Ctrl</td><td>Left Click (fire forward)</td></tr>
+                                    <tr><td><strong>Sprint / Handbrake</strong></td><td>Left Shift (sprint)</td><td>Spacebar (handbrake)</td></tr>
+                                    <tr><td><strong>Enter / Exit Vehicle</strong></td><td>F or Enter</td><td>F or Enter</td></tr>
+                                    <tr><td><strong>Jump</strong></td><td>Spacebar</td><td>N/A</td></tr>
+                                    <tr><td><strong>Crouch</strong></td><td>C</td><td>N/A</td></tr>
+                                    <tr><td><strong>Look Behind</strong></td><td>Middle Mouse / Caps Lock</td><td>Middle Mouse</td></tr>
+                                    <tr><td><strong>Camera</strong></td><td>V (switch view)</td><td>V (switch view)</td></tr>
+                                    <tr><td><strong>Change Weapon</strong></td><td>Scroll Wheel / E / Q</td><td>N/A</td></tr>
+                                    <tr><td><strong>Radio Station</strong></td><td>N/A</td><td>R (next station)</td></tr>
+                                    <tr><td><strong>Horn / Siren</strong></td><td>N/A</td><td>Left Shift or H</td></tr>
+                                    <tr><td><strong>Aim / Lock On</strong></td><td>Right Click</td><td>N/A</td></tr>
+                                    <tr><td><strong>Pause / Menu</strong></td><td colspan="2">Escape</td></tr>
+                                </tbody>
+                            </table>
+
+                            <h2>GTA Vice City Cheat Code Tester</h2>
+
+                            <p>Want to test a cheat code before using it in the game? Type any code below and we will tell you exactly what it does. All original PC cheats work in the browser version.</p>
+
+                            <div class="cheat-tester">
+                                <h3>Try a Cheat Code</h3>
+                                <div class="cheat-input-row">
+                                    <input type="text" id="cheat-input" placeholder="Type a cheat code... e.g. ASPIRINE" autocomplete="off" spellcheck="false" />
+                                    <button id="cheat-test-btn" type="button">Test Cheat</button>
+                                </div>
+                                <div id="cheat-result" class="cheat-result idle">Type a cheat code above and hit Test, or just start typing and we will search live.</div>
+                            </div>
+
+                            <h3>All Cheat Codes Quick Reference</h3>
+
+                            <div class="cheat-grid">
+                                <div class="cheat-card"><code>ASPIRINE</code><span>Full Health</span></div>
+                                <div class="cheat-card"><code>PRECIOUSPROTECTION</code><span>Full Armor</span></div>
+                                <div class="cheat-card"><code>THUGSTOOLS</code><span>Light Weapons</span></div>
+                                <div class="cheat-card"><code>PROFESSIONALTOOLS</code><span>Medium Weapons</span></div>
+                                <div class="cheat-card"><code>NUTTERTOOLS</code><span>Heavy Weapons</span></div>
+                                <div class="cheat-card"><code>PANZER</code><span>Spawn Tank</span></div>
+                                <div class="cheat-card"><code>COMEFLYWITHME</code><span>Flying Cars</span></div>
+                                <div class="cheat-card"><code>SEAWAYS</code><span>Drive on Water</span></div>
+                                <div class="cheat-card"><code>BIGBANG</code><span>Blow Up All Cars</span></div>
+                                <div class="cheat-card"><code>LEAVEMEALONE</code><span>Remove Wanted Level</span></div>
+                                <div class="cheat-card"><code>LIFEISPASSINGMEBY</code><span>Speed Up Time</span></div>
+                                <div class="cheat-card"><code>ABITDRIEG</code><span>Overcast Weather</span></div>
+                            </div>
+
+                            <p>For the complete list of all 40+ cheat codes with detailed descriptions, check out our <a href="/blog/gta-vice-city-cheats-guide.html" style="color:var(--accent)"><strong>GTA Vice City Cheats Guide</strong></a>.</p>
+
+                            <h2>Quenq GTA Vice City Story: Vice City 1986</h2>
+
+                            <p>The story of <strong>GTA Vice City</strong> takes place in 1986 in a fictional city inspired by Miami, Florida. You play as <strong>Tommy Vercetti</strong>, a tough mobster who just spent 15 years in prison for the Forelli crime family.</p>
+
+                            <p>The boss, Sonny Forelli, sends Tommy down to Vice City to start fresh and make money through a big drug deal. But the deal gets ambushed. Tommy loses the drugs and the money. Now Sonny is furious and wants every dollar back. Tommy has to figure out who set him up while building his own empire.</p>
+
+                            <p>Along the way, Tommy meets some unforgettable characters:</p>
+
+                            <ul>
+                                <li><strong>Colonel Cortez</strong> : A retired military leader who runs shady operations from his luxury yacht</li>
+                                <li><strong>Ricardo Diaz</strong> : The biggest and most dangerous drug lord in Vice City</li>
+                                <li><strong>Lance Vance</strong> : Tommy's partner who wants to get revenge for his brother's murder</li>
+                                <li><strong>Avery Carrington</strong> : A wealthy real estate tycoon with dirty business tactics</li>
+                                <li><strong>Kent Paul</strong> : A British music manager who hangs out at the Malibu Club</li>
+                            </ul>
+
+                            <p>As the story goes on, Tommy takes over Diaz's mansion and starts buying up businesses all over the city. From the Malibu Club to the Print Works, you build a criminal empire worth millions. The final battle is with Sonny Forelli himself, who shows up in Vice City to take everything from Tommy.</p>
+
+                            <h2>Properties You Can Buy in Vice City</h2>
+
+                            <p>Buying properties is one of the best ways to <strong>make money in GTA Vice City</strong>. Each property gives you daily income after you complete its missions. Here is the full list:</p>
+
+                            <table class="controls-table">
+                                <thead>
+                                    <tr><th>Property</th><th>Cost</th><th>Daily Income</th><th>What You Do</th></tr>
+                                </thead>
+                                <tbody>
+                                    <tr><td><strong> Vercetti Estate</strong></td><td>Free (story)</td><td>$5,000</td><td>Complete "Rub Out" mission</td></tr>
+                                    <tr><td><strong> Malibu Club</strong></td><td>$120,000</td><td>$10,000</td><td>Plan and pull off a bank heist</td></tr>
+                                    <tr><td><strong> Print Works</strong></td><td>$70,000</td><td>$8,000</td><td>Set up a counterfeit money operation</td></tr>
+                                    <tr><td><strong> Film Studio</strong></td><td>$60,000</td><td>$7,000</td><td>Direct wild action movies</td></tr>
+                                    <tr><td><strong> Sunshine Autos</strong></td><td>$50,000</td><td>$9,000</td><td>Complete car export lists</td></tr>
+                                    <tr><td><strong> Kaufman Cabs</strong></td><td>$40,000</td><td>$5,000</td><td>Win taxi turf wars</td></tr>
+                                    <tr><td><strong> Cherry Popper</strong></td><td>$20,000</td><td>$3,000</td><td>Sell ice cream to 50 customers</td></tr>
+                                    <tr><td><strong> Boatyard</strong></td><td>$10,000</td><td>$2,000</td><td>Win the Checkpoint Charlie boat race</td></tr>
+                                </tbody>
+                            </table>
+
+                            <p>Want to learn more money-making strategies? Read our <a href="/blog/how-to-make-money-gta-vice-city.html" style="color:var(--accent)"><strong>Complete GTA Vice City Money Guide</strong></a>.</p>
+
+                            <h2>Radio Stations and Music</h2>
+
+                            <p>One of the best things about GTA Vice City is its legendary <strong>1980s soundtrack</strong>. Press <strong>R</strong> while driving to switch between these stations:</p>
+
+                            <ul>
+                                <li><strong>Flash FM</strong> : 80s pop hits (Hall and Oates, Laura Branigan, Go West)</li>
+                                <li><strong>V-Rock</strong> : Rock and metal (Ozzy Osbourne, Iron Maiden, Megadeth, Slayer)</li>
+                                <li><strong>Emotion 98.3</strong> : Soft rock and love ballads (Foreigner, REO Speedwagon, Cutting Crew)</li>
+                                <li><strong>Fever 105</strong> : Funk, soul, and disco grooves</li>
+                                <li><strong>Wave 103</strong> : New wave and synth-pop (Blondie, Nena, Frankie Goes to Hollywood)</li>
+                                <li><strong>Wildstyle</strong> : Old school hip-hop (Run-DMC, Grandmaster Flash)</li>
+                                <li><strong>Espantoso</strong> : Latin jazz and salsa beats</li>
+                                <li><strong>K-Chat</strong> : Hilarious talk radio with celebrity interviews</li>
+                                <li><strong>VCPR</strong> : Vice City Public Radio, a parody talk show</li>
+                            </ul>
+
+                            <h2>Quenq Vice City System Requirements</h2>
+
+                            <p>Since <strong>Quenq Vice City</strong> runs in your browser, you do not need to install anything. But your device does need to meet these minimum specs:</p>
+
+                            <ul>
+                                <li><strong>Browser</strong> : Chrome 90+, Edge 90+, Firefox 95+, or Safari 15+</li>
+                                <li><strong>RAM</strong> : At least 2 GB free</li>
+                                <li><strong>Graphics</strong> : WebGL 2.0 support (any GPU from 2015 or newer)</li>
+                                <li><strong>Internet</strong> : Needed for first load (~120 MB), then plays offline</li>
+                                <li><strong>Storage</strong> : About 200 MB of browser storage for saves and cached data</li>
+                            </ul>
+
+                            <div class="tip-box">
+                                <strong> High Refresh Rate Fix:</strong> If you have a 144Hz or 240Hz monitor, the game physics might run too fast. To fix this, press <strong>Escape</strong>, go to Display Setup, and set <strong>Frame Limiter: ON</strong>.
+                            </div>
+
+                            <h2>Frequently Asked Questions</h2>
+
+                            <details class="faq-item">
+                                <summary>Is Quenq Vice City free to play?</summary>
+                                <p>Yes. It is completely free with no sign-ups, no downloads, and no hidden payments. You just open the page and play.</p>
+                            </details>
+
+                            <details class="faq-item">
+                                <summary>Does GTA Vice City online save my progress?</summary>
+                                <p>Yes. Your game is saved locally in your browser using IndexedDB. You get 8 save slots. Your saves will stay as long as you do not clear your browser data.</p>
+                            </details>
+
+                            <details class="faq-item">
+                                <summary>Can I play on my phone or tablet?</summary>
+                                <p>Yes. The game has full touch controls with on-screen buttons and dual joysticks. It works on both Android and iOS devices. For the best experience, use a device with at least 3 GB RAM.</p>
+                            </details>
+
+                            <details class="faq-item">
+                                <summary>What browser works best?</summary>
+                                <p>Google Chrome or Microsoft Edge on desktop give the best performance. On mobile, Chrome for Android works great. Safari on iOS also works but may have slightly lower performance.</p>
+                            </details>
+
+                            <details class="faq-item">
+                                <summary>Do cheat codes work in the browser version?</summary>
+                                <p>Yes. All original GTA Vice City cheat codes work. Just type them on your keyboard during gameplay. A confirmation message appears in the top-left corner.</p>
+                            </details>
+
+                            <details class="faq-item">
+                                <summary>Can I use a controller?</summary>
+                                <p>Yes. Connect any USB or Bluetooth gamepad (Xbox, PlayStation, or generic). The game will automatically detect it.</p>
+                            </details>
+
+                            <details class="faq-item">
+                                <summary>Why is the game running too fast?</summary>
+                                <p>GTA Vice City physics are tied to 30 FPS. If your monitor runs at 144Hz or higher, the game will speed up. Go to Options → Display Setup → enable Frame Limiter.</p>
+                            </details>
+
+                        </div>
+                    </div>
+                    <div class="cnt-ft"></div>
+                </div>
+            </div>
+
+            <div id="col-R">
+                <div class="nav-box">
+                    <div class="nav-head"><h5>Quick Links</h5></div>
+                    <div class="nav-filler">
+                        <div class="nav-links">
+                            <ul>
+                                <li><a href="/">Home</a></li>
+                                <li><a href="/games/quenq-gta-vice-city/">Play GTA Vice City</a></li>
+                                <li><a href="/about.html">About QUENQQ</a></li>
+                                <li><a href="/contact.html">Contact</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="nav-ft"></div>
+                </div>
+
+                <div class="nav-box">
+                    <div class="nav-head"><h5>Blog Guides</h5></div>
+                    <div class="nav-filler">
+                        <div class="nav-links">
+                            <ul>
+                                <li><a href="/blog/gta-vice-city-cheats-guide.html">All Cheat Codes</a></li>
+                                <li><a href="/blog/gta-vice-city-beginners-guide.html">Beginner's Guide</a></li>
+                                <li><a href="/blog/how-to-make-money-gta-vice-city.html">Money Guide</a></li>
+                                <li><a href="/blog/gta-vice-city-not-loading-fix.html">Fix Loading Errors</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="nav-ft"></div>
+                </div>
+
+                <div class="nav-box">
+                    <div class="nav-head"><h5>Game Info</h5></div>
+                    <div class="nav-filler">
+                        <div class="nav-links">
+                            <ul>
+                                <li>Release: 2002</li>
+                                <li>Setting: Vice City, 1986</li>
+                                <li>Developer: Rockstar Games</li>
+                                <li>Genre: Open World Action</li>
+                                <li>Player: Single Player</li>
+                                <li>Platform: Web Browser</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="nav-ft"></div>
+                </div>
+
+                <div class="nav-box">
+                    <div class="nav-head"><h5>Legal</h5></div>
+                    <div class="nav-filler">
+                        <div class="nav-links">
+                            <ul>
+                                <li><a href="/privacy-policy.html">Privacy Policy</a></li>
+                                <li><a href="/terms-of-service.html">Terms of Service</a></li>
+                                <li><a href="/dmca.html">DMCA</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="nav-ft"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="footer">
+        <div id="foot-info">
+            <div class="footer-column">
+                <div class="ft-title">Quick Links</div>
+                <div class="ft-links"><ul>
+                    <li><a href="/">Home</a></li>
+                    <li><a href="/games/quenq-gta-vice-city/">Play GTA Vice City</a></li>
+                    <li><a href="/about.html">About</a></li>
+                </ul></div>
+            </div>
+            <div class="footer-column">
+                <div class="ft-title">Community</div>
+                <div class="ft-links"><ul>
+                    <li><a href="/about.html">About Us</a></li>
+                    <li><a href="/contact.html">Contact</a></li>
+                </ul></div>
+            </div>
+            <div class="footer-column">
+                <div class="ft-title">Legal</div>
+                <div class="ft-links"><ul>
+                    <li><a href="/privacy-policy.html">Privacy Policy</a></li>
+                    <li><a href="/terms-of-service.html">Terms of Service</a></li>
+                    <li><a href="/dmca.html">DMCA</a></li>
+                </ul></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+    // === Live Visitor Counter ===
+    (function() {
+      var el = document.getElementById('live-count');
+      if (!el) return;
+      var base = 600 + Math.floor(Math.random() * 400); // 600-1000 base
+      var hour = new Date().getHours();
+      // Peak hours multiplier (more players evenings/weekends)
+      var peak = (hour >= 18 && hour <= 23) ? 1.6 : (hour >= 12 && hour <= 17) ? 1.2 : (hour >= 0 && hour <= 6) ? 0.6 : 1.0;
+      var count = Math.floor(base * peak);
+      el.textContent = count.toLocaleString();
+      // Fluctuate every 8-15 seconds
+      setInterval(function() {
+        count += Math.floor(Math.random() * 21) - 10; // -10 to +10
+        if (count < 200) count = 200 + Math.floor(Math.random() * 50);
+        if (count > 2000) count = 1800 + Math.floor(Math.random() * 100);
+        el.textContent = count.toLocaleString();
+      }, 8000 + Math.floor(Math.random() * 7000));
+    })();
+
+    // === Interactive Cheat Code Tester ===
+    (function() {
+      var cheats = {
+        'ASPIRINE':          { effect: 'Full Health: Restores health to 100%', cat: 'Health' },
+        'PRECIOUSPROTECTION':{ effect: 'Full Armor: Gives max body armor', cat: 'Health' },
+        'YOUWONTTAKEMEALIVE':{ effect: 'Higher Wanted Level: Adds 2 wanted stars', cat: 'Wanted' },
+        'LEAVEMEALONE':      { effect: 'Remove Wanted Level: Clears all stars', cat: 'Wanted' },
+        'IWANTITPAINTEDBLACK':{ effect: 'All Cars Black: Every vehicle turns black', cat: 'Vehicle' },
+        'AHAIRDRESSERSCAR':  { effect: 'All Cars Pink: Every vehicle turns pink', cat: 'Vehicle' },
+        'BIGBANG':           { effect: 'Blow Up All Cars: All nearby vehicles explode', cat: 'Chaos' },
+        'STILLLIKEDRESSINGUP':{ effect: 'Change Outfit: Random player skin', cat: 'Player' },
+        'CERTAINDEATH':      { effect: 'Smoke a Cigarette: Tommy lights up', cat: 'Fun' },
+        'DEEPFRIEDMARSBARS': { effect: 'Fat Player Model: Tommy gains weight', cat: 'Fun' },
+        'PROGRAMMER':        { effect: 'Skinny Player Model: Tommy gets thin', cat: 'Fun' },
+        'THUGSTOOLS':        { effect: 'Weapon Set 1: Brass Knuckles, Tec-9, Shotgun, Python, M4, Rocket Launcher, Molotov', cat: 'Weapons' },
+        'PROFESSIONALTOOLS': { effect: 'Weapon Set 2: Katana, Remote Grenades, Spas-12, MP5, M4, Sniper, Flame', cat: 'Weapons' },
+        'NUTTERTOOLS':       { effect: 'Weapon Set 3: Chainsaw, Grenades, Stubby, MP5, M60, Laser Sniper, Minigun', cat: 'Weapons' },
+        'PANZER':            { effect: 'Spawn Rhino Tank: Tank appears in front of you', cat: 'Vehicle Spawn' },
+        'TRAVELINSTYLE':     { effect: 'Spawn Bloodring Banger: Demolition derby car', cat: 'Vehicle Spawn' },
+        'GETTHEREQUICKLY':   { effect: 'Spawn Bloodring Racer: Race version derby car', cat: 'Vehicle Spawn' },
+        'GETTHEREAMAZINGLYFAST':{ effect: 'Spawn Hotring Racer: NASCAR-style race car', cat: 'Vehicle Spawn' },
+        'GETTHEREVERYFASTINDEED':{ effect: 'Spawn Hotring Racer 2: Another variant', cat: 'Vehicle Spawn' },
+        'RUBBISHCAR':        { effect: 'Spawn Trashmaster: Garbage truck', cat: 'Vehicle Spawn' },
+        'BETTERTHANWALKING': { effect: 'Spawn Caddy: Golf cart', cat: 'Vehicle Spawn' },
+        'ROCKANDROLLCAR':    { effect: 'Spawn Love Fist Limo', cat: 'Vehicle Spawn' },
+        'COMEFLYWITHME':     { effect: 'Flying Cars: Vehicles fly when you accelerate', cat: 'Vehicle Physics' },
+        'HOPINGIRL':         { effect: 'NPCs Enter Your Car: Pedestrians jump in', cat: 'Chaos' },
+        'SEAWAYS':           { effect: 'Cars Drive on Water: Turn any vehicle into a boat', cat: 'Vehicle Physics' },
+        'WHEELSAREALLINEED': { effect: 'Invisible Cars: Only wheels visible', cat: 'Vehicle Physics' },
+        'LOADSOFLITTLETHINGS':{ effect: 'Sportscars Everywhere: Luxury cars spawn', cat: 'Traffic' },
+        'GRIPISEVERYTHING':  { effect: 'Perfect Handling: Better vehicle control', cat: 'Vehicle Physics' },
+        'GREENLIGHT':        { effect: 'All Traffic Lights Green: No red lights', cat: 'Traffic' },
+        'MIAMITRAFFIC':      { effect: 'Aggressive Drivers: NPCs drive like maniacs', cat: 'Traffic' },
+        'AIRSHIP':           { effect: 'Boats Fly: All boats become airborne', cat: 'Vehicle Physics' },
+        'ICANTTAKEITANYMORE':{ effect: 'Suicide: Tommy dies instantly', cat: 'Player' },
+        'NOBODYLIKESME':     { effect: 'Everyone Hates You: All peds attack you', cat: 'Chaos' },
+        'OURGODGIVENRIGHTTOBEARARMSII':{ effect: 'Everyone Is Armed: All peds carry weapons', cat: 'Chaos' },
+        'FIGHTFIGHTFIGHT':   { effect: 'Pedestrians Riot: Peds attack each other', cat: 'Chaos' },
+        'ONSPEED':           { effect: 'Game Speed Up: Everything moves faster', cat: 'Time' },
+        'BOOOOOORING':       { effect: 'Game Slow Down: Slow motion mode', cat: 'Time' },
+        'LIFEISPASSINGMEBY': { effect: 'Speed Up Time: Clock moves faster', cat: 'Time' },
+        'ABITDRIEG':         { effect: 'Overcast Weather: Cloudy skies', cat: 'Weather' },
+        'CATSANDDOGS':       { effect: 'Stormy Weather: Heavy rain and wind', cat: 'Weather' },
+        'CANTSEEATHING':     { effect: 'Dense Fog: Zero visibility', cat: 'Weather' },
+        'PLEASANTLYWARM':    { effect: 'Sunny Weather: Clear blue skies', cat: 'Weather' },
+        'ALOVELYDAY':        { effect: 'Perfect Weather: Beautiful day', cat: 'Weather' },
+        'FANNYMAGNET':       { effect: 'Women Attracted to You: Female peds follow Tommy', cat: 'Fun' }
+      };
+
+      var input = document.getElementById('cheat-input');
+      var btn = document.getElementById('cheat-test-btn');
+      var result = document.getElementById('cheat-result');
+      if (!input || !btn || !result) return;
+
+      function testCheat() {
+        var code = input.value.trim().toUpperCase().replace(/\s/g, '');
+        if (!code) {
+          result.className = 'cheat-result idle';
+          result.innerHTML = 'Type a cheat code above and press Test: or just start typing.';
+          return;
+        }
+        if (cheats[code]) {
+          var c = cheats[code];
+          result.className = 'cheat-result found';
+          result.innerHTML = ' <strong>Cheat Found!</strong> <span class="cheat-name">' + code + '</span> <span class="cheat-cat">[' + c.cat + ']</span><br>' + c.effect + '<br><small style="opacity:0.6">Type this in-game on your keyboard. "Cheat Activated" will appear on screen.</small>';
+        } else {
+          // Check for partial matches
+          var partial = [];
+          var keys = Object.keys(cheats);
+          for (var i = 0; i < keys.length; i++) {
+            if (keys[i].indexOf(code) === 0) partial.push(keys[i]);
+          }
+          if (partial.length > 0 && code.length >= 3) {
+            result.className = 'cheat-result idle';
+            var suggestions = partial.slice(0, 4).map(function(k) { return '<span class="cheat-name">' + k + '</span>: ' + cheats[k].effect.split(':')[0]; }).join('<br>');
+            result.innerHTML = ' Keep typing... Possible matches:<br>' + suggestions;
+          } else {
+            result.className = 'cheat-result not-found';
+            result.innerHTML = ' <strong>"' + code + '"</strong> is not a valid GTA Vice City cheat code. Check the list below for all available cheats.';
+          }
+        }
+      }
+
+      btn.addEventListener('click', testCheat);
+      input.addEventListener('keyup', function(e) {
+        if (e.key === 'Enter') testCheat();
+        else testCheat(); // Live search as you type
+      });
+    })();
+    </script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+

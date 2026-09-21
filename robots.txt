@@ -1,0 +1,6 @@
+﻿User-agent: *
+Allow: /
+Disallow: /game-engine/
+
+Sitemap: https://quenqq.com/sitemap.xml
+
