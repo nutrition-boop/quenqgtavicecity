@@ -3,100 +3,57 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1, user-scalable=no">
-  <meta name="robots" content="noindex, nofollow">
-  <title>VC Web</title>
-  <link rel="stylesheet" crossorigin href="/game-engine/index-lJxhDyQ4.css">
+  <title>VC Game</title>
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body { background: #111; color: #fff; font-family: Arial, sans-serif; overflow: hidden; width: 100vw; height: 100vh; }
-    #loader { position: fixed; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; z-index: 9999; background: #111; }
-    #loader h1 { font-size: 1.8em; color: #ff2d95; margin-bottom: 8px; }
-    #loader p { color: #aaa; margin-bottom: 16px; font-size: 0.9em; }
-    .bar-wrap { width: 280px; height: 6px; background: #333; border-radius: 3px; overflow: hidden; margin-bottom: 8px; }
-    .bar-fill { width: 0%; height: 100%; background: linear-gradient(90deg, #ff2d95, #ff6b6b); transition: width 0.3s; }
-    .pct { font-size: 0.85em; color: #888; }
-    #play-btn { padding: 14px 48px; font-size: 1.1em; background: #ff2d95; color: #fff; border: none; border-radius: 8px; cursor: pointer; font-weight: bold; letter-spacing: 1px; }
-    #play-btn:hover { background: #e0267f; }
-    .hidden { display: none !important; }
+    *{margin:0;padding:0;box-sizing:border-box}
+    body{background:#111;color:#fff;font-family:Arial;overflow:hidden;width:100vw;height:100vh}
+    #L{position:fixed;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:9999;background:#111}
+    #L h1{font-size:1.8em;color:#ff2d95;margin-bottom:8px}
+    #L p{color:#aaa;margin-bottom:16px}
+    .bw{width:280px;height:6px;background:#333;border-radius:3px;overflow:hidden;margin-bottom:8px}
+    .bf{width:0%;height:100%;background:#ff2d95;transition:width .3s}
+    #B{padding:14px 48px;font-size:1.1em;background:#ff2d95;color:#fff;border:none;border-radius:8px;cursor:pointer;font-weight:bold}
+    .H{display:none!important}
+    canvas{position:absolute;inset:0;width:100%!important;height:100%!important}
   </style>
 </head>
 <body data-is-touch="0" data-state-car="0" data-state-car-gun="0" data-state-gun="0" data-state-bike="0"
   data-state-menu="1" data-state-cutscene="0" data-state-mobring="0" data-state-job="0"
   data-state-disable-controls="0" data-state-panzer="0" data-state-car-with-weapon="0" data-state-hunter="0"
   data-state-scope-mode="0" data-state-scope-gun="0">
-
-  <div id="loader">
+  <div id="L">
     <h1>GTA Vice City Online</h1>
-    <p id="status-text">Click Play to start. No download required.</p>
-    <button id="play-btn" onclick="startLoading()">▶ PLAY GAME</button>
-    <div id="loading-ui" class="hidden">
-      <div class="bar-wrap"><div class="bar-fill" id="bar"></div></div>
-      <div class="pct" id="pct">0%</div>
-    </div>
+    <p id="S">Click Play to start</p>
+    <button id="B" onclick="go()">▶ PLAY GAME</button>
+    <div id="LU" class="H"><div class="bw"><div class="bf" id="bar"></div></div><div id="pct" style="color:#888;font-size:.85em">0%</div></div>
   </div>
-
-  <canvas id="canvas" oncontextmenu="event.preventDefault()" tabindex="-1"
-    style="position:absolute;inset:0;width:100%;height:100%;"></canvas>
-
-  <div id="move" style="position:fixed;left:0;bottom:0;width:35vw;height:45vh;z-index:50;touch-action:none;"></div>
-  <div id="look" style="position:fixed;right:0;bottom:0;width:35vw;height:45vh;z-index:50;touch-action:none;"></div>
-
+  <canvas id="canvas" oncontextmenu="event.preventDefault()" tabindex="-1"></canvas>
+  <div id="move" style="position:fixed;left:0;bottom:0;width:35vw;height:45vh;z-index:50;touch-action:none"></div>
+  <div id="look" style="position:fixed;right:0;bottom:0;width:35vw;height:45vh;z-index:50;touch-action:none"></div>
   <script>
-    var started = false;
-
-    function startLoading() {
-      if (started) return;
-      started = true;
-      document.getElementById('play-btn').classList.add('hidden');
-      document.getElementById('loading-ui').classList.remove('hidden');
-      document.getElementById('status-text').textContent = 'Loading game data...';
-
-      window.VCSKY = window.VCSKY || {};
-      window.VCSKY.activeMods = [];
-
-      window.VCSKY.onProgress = function(p) {
-        document.getElementById('bar').style.width = p + '%';
-        document.getElementById('pct').textContent = p + '%';
-      };
-
-      window.VCSKY.onReady = function() {
-        document.getElementById('status-text').textContent = 'Starting game...';
-        document.getElementById('pct').textContent = '100%';
-        document.getElementById('bar').style.width = '100%';
-        // Launch the game after a short delay
-        setTimeout(function() {
-          document.getElementById('loader').classList.add('hidden');
-          if (window.VCSKY.launchGame) {
-            window.VCSKY.launchGame();
-          }
-        }, 500);
-      };
-
-      // Load scripts in order
-      loadScript('/game-engine/assets/js/GamepadEmulator.js', function() {
-        loadScript('/game-engine/assets/js/idbfs.js', function() {
-          loadScript('/game-engine/assets/js/game.js', function() {
-            if (window.VCSKY && window.VCSKY.start) {
-              window.VCSKY.start();
-            } else {
-              alert('Game engine failed to initialize.');
-            }
-          });
+  var ok=false;
+  function go(){
+    if(ok)return;ok=true;
+    document.getElementById('B').classList.add('H');
+    document.getElementById('LU').classList.remove('H');
+    document.getElementById('S').textContent='Loading...';
+    window.VCSKY=window.VCSKY||{};
+    window.VCSKY.activeMods=[];
+    window.VCSKY.onProgress=function(p){document.getElementById('bar').style.width=p+'%';document.getElementById('pct').textContent=p+'%'};
+    window.VCSKY.onReady=function(){
+      document.getElementById('S').textContent='Starting...';
+      setTimeout(function(){document.getElementById('L').classList.add('H');if(window.VCSKY.launchGame)window.VCSKY.launchGame()},500);
+    };
+    ls('/game-engine/assets/js/GamepadEmulator.js',function(){
+      ls('/game-engine/assets/js/idbfs.js',function(){
+        ls('/game-engine/assets/js/game.js',function(){
+          if(window.VCSKY&&window.VCSKY.start)window.VCSKY.start();
+          else alert('Engine init failed');
         });
       });
-    }
-
-    function loadScript(src, cb) {
-      var s = document.createElement('script');
-      s.src = src;
-      s.type = 'text/javascript';
-      s.onload = cb;
-      s.onerror = function() {
-        console.error('Failed to load: ' + src);
-        alert('Failed to load: ' + src);
-      };
-      document.body.appendChild(s);
-    }
+    });
+  }
+  function ls(u,c){var s=document.createElement('script');s.src=u;s.onload=c;s.onerror=function(){alert('Load failed: '+u)};document.body.appendChild(s)}
   </script>
 </body>
 </html>
