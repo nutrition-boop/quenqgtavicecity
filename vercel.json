@@ -7,6 +7,14 @@
     {
       "source": "/game-engine/",
       "destination": "/game-engine/index.html"
+    },
+    {
+      "source": "/vcsky/:path*",
+      "destination": "https://vc.quenq.com/vcsky/:path*"
+    },
+    {
+      "source": "/assets/:path*",
+      "destination": "https://vc.quenq.com/assets/:path*"
     }
   ]
 }

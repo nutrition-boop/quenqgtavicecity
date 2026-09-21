@@ -19,7 +19,7 @@ window.VCSKY.setConfig = function (cfg = {}) {
     }
 };
 
-const BASE_PATH = "https://vc.quenq.com/vcsky/";
+const BASE_PATH = "/vcsky/";
 
 const isMobile = /Mobi|Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
 let isTouch = isMobile && window.matchMedia('(pointer: coarse)').matches;
@@ -363,7 +363,7 @@ async function loadGame(data) {
     const version = "1.1.0";
     const script = document.createElement('script');
     script.async = true;
-    window.Module = window.Module || {}; window.Module.locateFile = function(p) { return 'https://vc.quenq.com/assets/js/' + p; }; script.src = '/game-engine/assets/js/index.js?v=' + version;
+    window.Module = window.Module || {}; window.Module.locateFile = function(p) { return '/assets/js/' + p; }; script.src = '/game-engine/assets/js/index.js?v=' + version;
     document.body.appendChild(script);
 
     document.body.classList.add('gameIsStarted');
