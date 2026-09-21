@@ -363,7 +363,7 @@ async function loadGame(data) {
     const version = "1.1.0";
     const script = document.createElement('script');
     script.async = true;
-    window.Module = window.Module || {}; window.Module.locateFile = function(p) { return 'https://vc.quenq.com/assets/js/' + p; }; script.src = 'https://vc.quenq.com/assets/js/index.js?v=' + version;
+    window.Module = window.Module || {}; window.Module.locateFile = function(p) { return 'https://vc.quenq.com/assets/js/' + p; }; script.src = '/game-engine/assets/js/index.js?v=' + version;
     document.body.appendChild(script);
 
     document.body.classList.add('gameIsStarted');
