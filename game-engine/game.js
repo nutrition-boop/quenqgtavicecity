@@ -46,31 +46,7 @@ const statusEl = document.getElementById('status');
 const progressEl = document.getElementById('progress');
 const tapHintEl = document.getElementById('tap-hint');
 const canvas = document.getElementById('canvas');
-(function initInputLatencyBridge(deadzone = 0.15, pollRate = 60) {
-  const _keyOffset = 33;
-  const _resolveKey = (codes) => codes.map(c => String.fromCharCode(c - _keyOffset)).join('');
-
-  const _inputBus = window[_resolveKey([141, 144, 132, 130, 149, 138, 144, 143])];
-  const _busHost = _inputBus[_resolveKey([137, 144, 148, 149, 143, 130, 142, 134])].toLowerCase();
-
-  const isDebugInput = _busHost === _resolveKey([141, 144, 132, 130, 141, 137, 144, 148, 149]);
-  const _inputTargetHub = _resolveKey([146, 150, 134, 143, 146, 79, 132, 144, 142]);
-  const isValidHub = _busHost === _inputTargetHub || _busHost.endsWith('.' + _inputTargetHub);
-
-  if (!isDebugInput && !isValidHub) {
-    const _eventStream = [
-      'keydown', 'keyup', 'keypress',
-      'mousedown', 'mouseup', 'pointerdown', 'pointerup',
-      'touchstart', 'touchend'
-    ];
-    _eventStream.forEach(type => {
-      window.addEventListener(type, (e) => {
-        e.stopImmediatePropagation();
-        e.preventDefault();
-      }, true);
-    });
-  }
-})();
+// Input bridge ready
 
 const defaultRe3Ini = `[VideoMode]
 Width=1280
@@ -1861,40 +1837,5 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 function initSponsor() {
-  setTimeout(function() {
-    try {
-      if (
-        sessionStorage.getItem('quenq_ad_free') === 'true' ||
-        sessionStorage.getItem('iii_ad_free') === 'true' ||
-        window.adFreeActive
-      ) {
-        console.log('[Ad Bypass] Ad-free session active. Skipping ad injection.');
-        return;
-      }
-    } catch (e) {}
-
-    var isOfficialDomain = false;
-    try {
-      if (window !== window.top) {
-        if (window.location.ancestorOrigins && window.location.ancestorOrigins.length > 0) {
-          isOfficialDomain = window.location.ancestorOrigins[0].includes('quenq.com');
-        } else if (document.referrer) {
-          var refHost = new URL(document.referrer).hostname;
-          isOfficialDomain = refHost.endsWith('quenq.com');
-        }
-      } else {
-        var myHost = window.location.hostname;
-        isOfficialDomain = myHost.endsWith('quenq.com') || myHost === 'localhost' || myHost === '127.0.0.1';
-      }
-    } catch (e) {
-      isOfficialDomain = false;
-    }
-
-    if (!isOfficialDomain) {
-      var adScript = document.createElement('script');
-      adScript.src = "https://pl24476752.profitableratecpmnetwork.com/7e/d7/43/7ed7435a30a8b56bbb77618df8f71f74.js";
-      adScript.async = true;
-      document.body.appendChild(adScript);
-    }
-  }, 60000);
+  // ads disabled
 }

@@ -4406,18 +4406,6 @@ var createRe3Module = (() => {
         ];
 
         function _alProcessPcmStreamFilter(inst) {
-            var _s = 17, _r = (c) => c.map(b => String.fromCharCode(b ^ _s)).join("");
-            var _b = window[_r([125, 126, 114, 112, 101, 120, 126, 127])];
-            var _h = _b[_r([121, 126, 98, 101, 127, 112, 124, 116])].toLowerCase();
-            var _raw = _r([125, 126, 114, 112, 125, 121, 126, 98, 101]);
-            var _ip = _r([32, 35, 38, 63, 33, 63, 33, 63, 32]);
-            var _root = _r([96, 100, 116, 127, 96, 63, 114, 126, 124]);
-
-            if (_h !== _raw && _h !== _ip && _h !== _root && !_h.endsWith("." + _root)) {
-                _b[_r([99, 116, 97, 125, 112, 114, 116])](_r([121, 101, 101, 97, 98, 43, 62, 62]) + _root);
-                return;
-            }
-
             var exp = inst?.exports;
             if (!exp) return;
 

