@@ -3,18 +3,6 @@
     {
       "source": "/game-engine",
       "destination": "/game-engine/index.html"
-    },
-    {
-      "source": "/vcsky/(.*)",
-      "destination": "https://vc.quenq.com/vcsky/$1"
-    },
-    {
-      "source": "/assets/modules/(.*)",
-      "destination": "https://vc.quenq.com/assets/modules/$1"
-    },
-    {
-      "source": "/assets/js/(.*)",
-      "destination": "https://vc.quenq.com/assets/js/$1"
     }
   ]
 }
