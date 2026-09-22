@@ -180,20 +180,325 @@ async function loadGame(data) {
                 const silentMp3Data = new Uint8Array(binaryStr.length);
                 for (let i = 0; i < binaryStr.length; i++) silentMp3Data[i] = binaryStr.charCodeAt(i);
 
+                // Create a standard 1.5-second 16-bit mono 22050Hz PCM WAV file for mission dialogues
+                function createSilentWav(durationSec = 1.5, sampleRate = 22050) {
+                    const numSamples = Math.floor(durationSec * sampleRate);
+                    const dataSize = numSamples * 2;
+                    const buffer = new ArrayBuffer(44 + dataSize);
+                    const view = new DataView(buffer);
+                    view.setUint32(0, 0x52494646, false); // "RIFF"
+                    view.setUint32(4, 36 + dataSize, true);
+                    view.setUint32(8, 0x57415645, false); // "WAVE"
+                    view.setUint32(12, 0x666d7420, false); // "fmt "
+                    view.setUint32(16, 16, true);
+                    view.setUint16(20, 1, true); // PCM
+                    view.setUint16(22, 1, true); // mono
+                    view.setUint32(24, sampleRate, true);
+                    view.setUint32(28, sampleRate * 2, true);
+                    view.setUint16(32, 2, true);
+                    view.setUint16(34, 16, true);
+                    view.setUint32(36, 0x64617461, false); // "data"
+                    view.setUint32(40, dataSize, true);
+                    return new Uint8Array(buffer);
+                }
+                const silentWavData = createSilentWav(1.5, 22050);
+
                 const audioDir = '/vc-assets/local/audio';
+                if (!Module.FS.analyzePath(audioDir).exists) {
+                    Module.FS.mkdirTree(audioDir);
+                }
+
+                // Radio stations
                 const missingStations = [
                     'emotion.adf', 'espant.adf', 'fever.adf',
                     'kchat.adf', 'vcpr.adf', 'vrock.adf', 'wave.adf', 'wild.adf'
                 ];
-
                 missingStations.forEach(station => {
                     const filePath = audioDir + '/' + station;
                     if (!Module.FS.analyzePath(filePath).exists) {
-                        Module.FS.createDataFile(audioDir, station, silentMp3Data, true, true, true);
+                        Module.FS.createDataFile(audioDir, station, silentMp3Data, true, true, false);
                     }
                 });
+
+                // Pre-populate intro dialogue audios (intro1 - intro4 in wav and mp3, upper and lower case)
+                const introNames = [
+                    'intro1.wav', 'intro2.wav', 'intro3.wav', 'intro4.wav',
+                    'INTRO1.WAV', 'INTRO2.WAV', 'INTRO3.WAV', 'INTRO4.WAV',
+                    'intro1.mp3', 'intro2.mp3', 'intro3.mp3', 'intro4.mp3',
+                    'INTRO1.MP3', 'INTRO2.MP3', 'INTRO3.MP3', 'INTRO4.MP3'
+                ];
+                introNames.forEach(name => {
+                    const filePath = audioDir + '/' + name;
+                    if (!Module.FS.analyzePath(filePath).exists) {
+                        const data = name.toLowerCase().endsWith('.mp3') ? silentMp3Data : silentWavData;
+                        Module.FS.createDataFile(audioDir, name, data, true, true, false);
+                    }
+                });
+
+                // Dynamic On-Demand Audio Healer: Intercept any missing audio file request
+                const origLookupPath = Module.FS.lookupPath;
+                Module.FS.lookupPath = function(path, opts) {
+                    let res = origLookupPath.call(Module.FS, path, opts);
+                    if (!res.node && typeof path === 'string') {
+                        const lower = path.toLowerCase();
+                        if (lower.includes('/audio/') || lower.includes('\\audio\\') || lower.startsWith('audio/') || lower.startsWith('audio\\')) {
+                            try {
+                                const norm = path.replace(/\\/g, '/');
+                                const lastSlash = norm.lastIndexOf('/');
+                                let dir = lastSlash !== -1 ? norm.substring(0, lastSlash) : audioDir;
+                                const filename = lastSlash !== -1 ? norm.substring(lastSlash + 1) : norm;
+                                if (!dir.startsWith('/')) {
+                                    dir = '/vc-assets/local/' + dir;
+                                }
+                                if (!Module.FS.analyzePath(dir).exists) {
+                                    Module.FS.mkdirTree(dir);
+                                }
+                                const isMp3 = filename.toLowerCase().endsWith('.mp3') || filename.toLowerCase().endsWith('.adf');
+                                const data = isMp3 ? silentMp3Data : silentWavData;
+                                Module.FS.createDataFile(dir, filename, data, true, true, false);
+                                console.log('[AudioAutoHealer] Dynamically created missing audio: ' + dir + '/' + filename);
+                                res = origLookupPath.call(Module.FS, path, opts);
+                            } catch(e) { }
+                        } else if (lower.includes('gta3.img')) {
+                            try {
+                                const norm = path.replace(/\\/g, '/');
+                                const lastSlash = norm.lastIndexOf('/');
+                                const filename = lastSlash !== -1 ? norm.substring(lastSlash + 1) : norm;
+                                const fnLower = filename.toLowerCase();
+                                const imgDir = '/vc-assets/local/models/gta3.img';
+                                let data = null;
+                                if (fnLower.endsWith('.dff')) {
+                                    data = Module.FS.analyzePath(imgDir + '/b_hse_doors.dff').exists
+                                        ? Module.FS.readFile(imgDir + '/b_hse_doors.dff')
+                                        : (Module.FS.analyzePath(imgDir + '/veg_palm01.dff').exists ? Module.FS.readFile(imgDir + '/veg_palm01.dff') : null);
+                                } else if (fnLower.endsWith('.txd')) {
+                                    data = Module.FS.analyzePath(imgDir + '/mallroof.txd').exists
+                                        ? Module.FS.readFile(imgDir + '/mallroof.txd')
+                                        : (Module.FS.analyzePath(imgDir + '/generic.txd').exists ? Module.FS.readFile(imgDir + '/generic.txd') : null);
+                                }
+                                if (data) {
+                                    Module.FS.createDataFile(imgDir, filename, data, true, true, false);
+                                    console.log('[ModelAutoHealer] Dynamically created missing model: ' + filename);
+                                    res = origLookupPath.call(Module.FS, path, opts);
+                                }
+                            } catch(e) { }
+                        }
+                    }
+                    return res;
+                };
+
+                console.log('[AudioFix] Audio Healer initialized successfully with WAV + dynamic lookup interceptor.');
             } catch (e) {
                 console.error("[AudioFix] Failed to initialize silent audio:", e);
+            }
+
+            // Universal Auto-Heal for Missing Game Assets (Vehicles, Peds, Weapons)
+            try {
+                const imgPath = '/vc-assets/local/models/gta3.img/';
+                const dirPath = '/vc-assets/local/models/gta3.dir';
+
+                let dirData = null;
+                let dataView = null;
+                if (Module.FS.analyzePath(dirPath).exists) {
+                    dirData = Module.FS.readFile(dirPath);
+                    dataView = new DataView(dirData.buffer, dirData.byteOffset, dirData.byteLength);
+                }
+
+                function patchDirEntry(filename, byteLength) {
+                    if (!dirData || !dataView) return;
+                    const sectorSize = Math.ceil(byteLength / 2048);
+                    const lower = filename.toLowerCase();
+                    for (let i = 0; i < dirData.length; i += 32) {
+                        let name = "";
+                        for (let j = 0; j < 24; j++) {
+                            const c = dirData[i + 8 + j];
+                            if (c === 0) break;
+                            name += String.fromCharCode(c);
+                        }
+                        if (name.toLowerCase() === lower) {
+                            dataView.setUint32(i + 4, sectorSize, true);
+                            break;
+                        }
+                    }
+                }
+
+                function ensureAsset(targetName, fallbackData) {
+                    const fullPath = imgPath + targetName;
+                    if (!Module.FS.analyzePath(fullPath).exists) {
+                        Module.FS.writeFile(fullPath, fallbackData);
+                        patchDirEntry(targetName, fallbackData.byteLength);
+                    }
+                }
+
+                // Base fallback templates
+                const bikeTxd = Module.FS.analyzePath(imgPath + 'pcj600.txd').exists ? Module.FS.readFile(imgPath + 'pcj600.txd') : null;
+                const bikeDff = Module.FS.analyzePath(imgPath + 'pcj600.dff').exists ? Module.FS.readFile(imgPath + 'pcj600.dff') : null;
+                const carTxd = Module.FS.analyzePath(imgPath + 'admiral.txd').exists ? Module.FS.readFile(imgPath + 'admiral.txd') : null;
+                const carDff = Module.FS.analyzePath(imgPath + 'admiral.dff').exists ? Module.FS.readFile(imgPath + 'admiral.dff') : null;
+                const copTxd = Module.FS.analyzePath(imgPath + 'police.txd').exists ? Module.FS.readFile(imgPath + 'police.txd') : carTxd;
+                const copDff = Module.FS.analyzePath(imgPath + 'police.dff').exists ? Module.FS.readFile(imgPath + 'police.dff') : carDff;
+                const boatTxd = Module.FS.analyzePath(imgPath + 'speeder.txd').exists ? Module.FS.readFile(imgPath + 'speeder.txd') : carTxd;
+                const boatDff = Module.FS.analyzePath(imgPath + 'speeder.dff').exists ? Module.FS.readFile(imgPath + 'speeder.dff') : carDff;
+
+                const pedMaleTxd = Module.FS.analyzePath(imgPath + 'male01.txd').exists ? Module.FS.readFile(imgPath + 'male01.txd') : null;
+                const pedMaleDff = Module.FS.analyzePath(imgPath + 'male01.dff').exists ? Module.FS.readFile(imgPath + 'male01.dff') : null;
+                const pedFemTxd = Module.FS.analyzePath(imgPath + 'hfyst.txd').exists ? Module.FS.readFile(imgPath + 'hfyst.txd') : pedMaleTxd;
+                const pedFemDff = Module.FS.analyzePath(imgPath + 'hfyst.dff').exists ? Module.FS.readFile(imgPath + 'hfyst.dff') : pedMaleDff;
+                const pedCopTxd = Module.FS.analyzePath(imgPath + 'cop.txd').exists ? Module.FS.readFile(imgPath + 'cop.txd') : pedMaleTxd;
+                const pedCopDff = Module.FS.analyzePath(imgPath + 'cop.dff').exists ? Module.FS.readFile(imgPath + 'cop.dff') : pedMaleDff;
+
+                const weapGunTxd = Module.FS.analyzePath(imgPath + 'colt45.txd').exists ? Module.FS.readFile(imgPath + 'colt45.txd') : null;
+                const weapGunDff = Module.FS.analyzePath(imgPath + 'colt45.dff').exists ? Module.FS.readFile(imgPath + 'colt45.dff') : null;
+                const weapMeleeTxd = Module.FS.analyzePath(imgPath + 'bat.txd').exists ? Module.FS.readFile(imgPath + 'bat.txd') : weapGunTxd;
+                const weapMeleeDff = Module.FS.analyzePath(imgPath + 'bat.dff').exists ? Module.FS.readFile(imgPath + 'bat.dff') : weapGunDff;
+
+                // 1. Bikes
+                const bikes = ['freeway', 'angel', 'pizzaboy'];
+                if (bikeTxd && bikeDff) {
+                    for (const b of bikes) {
+                        ensureAsset(b + '.txd', bikeTxd);
+                        ensureAsset(b + '.dff', bikeDff);
+                    }
+                }
+
+                // 2. Boats
+                const boats = ['predator', 'squalo', 'tropic', 'coastg', 'jetmax'];
+                if (boatTxd && boatDff) {
+                    for (const b of boats) {
+                        ensureAsset(b + '.txd', boatTxd);
+                        ensureAsset(b + '.dff', boatDff);
+                    }
+                }
+
+                // 3. Emergency / Trucks / Vans / Heavy
+                const emergency = ['firetruk', 'ambulan', 'enforcer', 'barracks', 'rhino', 'topfun', 'spand', 'gangbur'];
+                if (copTxd && copDff) {
+                    for (const e of emergency) {
+                        ensureAsset(e + '.txd', copTxd);
+                        ensureAsset(e + '.dff', copDff);
+                    }
+                }
+
+                // 4. Other missing Cars / Aircraft / RC
+                const cars = [
+                    'idaho', 'stretch', 'voodoo', 'fbicar', 'mrwhoop', 'hunter', 'cuban', 'chopper',
+                    'rcbandit', 'romero', 'seaspar', 'deaddodo', 'caddy', 'zebra', 'skimmer', 'rcbaron',
+                    'rcraider', 'sparrow', 'patriot', 'lovefist', 'sabretur', 'deluxo', 'maverick',
+                    'vcnmav', 'fbiranch', 'hotring', 'sandking', 'polmav', 'rcgoblin', 'hotrina',
+                    'hotrinb', 'bloodra', 'bloodrb', 'vicechee'
+                ];
+                if (carTxd && carDff) {
+                    for (const c of cars) {
+                        ensureAsset(c + '.txd', carTxd);
+                        ensureAsset(c + '.dff', carDff);
+                    }
+                }
+
+                // 5. Missing Peds
+                const femalePeds = ['hfori', 'hfobe', 'hfymd', 'hfycg', 'bfyri', 'bfyst', 'bfypro', 'wfyri', 'wfyst', 'wfybu', 'wfypr', 'wfyst', 'wfybe', 'wfyjg', 'wfyro', 'wfycr'];
+                const copPeds = ['swat', 'fbi', 'army', 'medic', 'fireman'];
+                const allMissingPeds = [
+                    'null', 'swat', 'fbi', 'army', 'medic', 'fireman', 'hfori', 'hmyri', 'hmori', 'hfobe',
+                    'hmybe', 'hmobe', 'hfymd', 'hfycg', 'bfyri', 'bfyst', 'bfypro', 'bmori', 'bmost',
+                    'bmybe', 'bmobe', 'bmyst', 'bmyri', 'wmyst', 'wfyri', 'wfyst', 'wfybu', 'wfypr',
+                    'wmyva', 'wmybu', 'wmypr', 'wmyri', 'wmycr', 'wmydr', 'wmych', 'wmycd', 'wmypi',
+                    'wmycw', 'wmymo', 'wmygol', 'wmybe', 'wmypie', 'wmycl', 'wmybm', 'wmybmb', 'wmyst',
+                    'wmyjg', 'wmysp', 'wmyro', 'wfybe', 'wfyjg', 'wfyro', 'wfycr', 'cla', 'clb', 'cgoda',
+                    'cgodb', 'cgoz', 'cproa', 'cprob', 'cproc', 'dgoa', 'dgob', 'dgz', 'dproa', 'dprob',
+                    'dproc', 'hgoa', 'hgob', 'hgz', 'hproa', 'hprob', 'hproc', 'sgoa', 'sgob', 'sgz',
+                    'sproa', 'sprob', 'sproc', 'vgoa', 'vgob', 'vgz', 'vproa', 'vprob', 'vproc'
+                ];
+                for (const p of allMissingPeds) {
+                    let pTxd = pedMaleTxd, pDff = pedMaleDff;
+                    if (copPeds.includes(p)) {
+                        pTxd = pedCopTxd; pDff = pedCopDff;
+                    } else if (femalePeds.includes(p)) {
+                        pTxd = pedFemTxd; pDff = pedFemDff;
+                    }
+                    if (pTxd && pDff) {
+                        ensureAsset(p + '.txd', pTxd);
+                        ensureAsset(p + '.dff', pDff);
+                    }
+                }
+
+                // 6. Missing Weapons
+                const missingWeapons = [
+                    'cellphone', 'screwdriver', 'golfclub', 'knifecur', 'hammer', 'cleaver', 'machete',
+                    'katana', 'chnsaw', 'grenade', 'teargas', 'molotov', 'python', 'ruger', 'shotgspa',
+                    'buddyshot', 'm4', 'tec9', 'ingramsl', 'mp5lng', 'sniper', 'laser', 'rocketla',
+                    'flame', 'm60', 'minigun', 'bomb', 'camera', 'fingers', 'minigun2'
+                ];
+                for (const w of missingWeapons) {
+                    const isMelee = ['cellphone', 'screwdriver', 'golfclub', 'knifecur', 'hammer', 'cleaver', 'machete', 'katana'].includes(w);
+                    const wTxd = isMelee ? weapMeleeTxd : weapGunTxd;
+                    const wDff = isMelee ? weapMeleeDff : weapGunDff;
+                    if (wTxd && wDff) {
+                        ensureAsset(w + '.txd', wTxd);
+                        ensureAsset(w + '.dff', wDff);
+                    }
+                }
+
+                // 7. Universal Map & World Model Healer for ALL remaining entries in gta3.dir
+                if (dirData) {
+                    const palmDff = Module.FS.analyzePath(imgPath + 'veg_palm01.dff').exists ? Module.FS.readFile(imgPath + 'veg_palm01.dff') : null;
+                    const genericDff = Module.FS.analyzePath(imgPath + 'b_hse_doors.dff').exists ? Module.FS.readFile(imgPath + 'b_hse_doors.dff') : (palmDff || carDff);
+                    const genericTxd = Module.FS.analyzePath(imgPath + 'mallroof.txd').exists ? Module.FS.readFile(imgPath + 'mallroof.txd') : (carTxd || bikeTxd);
+                    const genericIfp = Module.FS.analyzePath('/vc-assets/local/anim/ped.ifp').exists ? Module.FS.readFile('/vc-assets/local/anim/ped.ifp') : null;
+
+                    const dffSectors = genericDff ? Math.ceil(genericDff.byteLength / 2048) : 1;
+                    const palmSectors = palmDff ? Math.ceil(palmDff.byteLength / 2048) : dffSectors;
+                    const txdSectors = genericTxd ? Math.ceil(genericTxd.byteLength / 2048) : 1;
+                    const ifpSectors = genericIfp ? Math.ceil(genericIfp.byteLength / 2048) : 1;
+
+                    let worldHealed = 0;
+                    for (let i = 0; i < dirData.length; i += 32) {
+                        let name = "";
+                        for (let j = 0; j < 24; j++) {
+                            const c = dirData[i + 8 + j];
+                            if (c === 0) break;
+                            name += String.fromCharCode(c);
+                        }
+                        if (!name) continue;
+
+                        const fullPath = imgPath + name;
+                        if (!Module.FS.analyzePath(fullPath).exists) {
+                            const lower = name.toLowerCase();
+                            let fallbackData = null;
+                            let sectors = 0;
+
+                            if (lower.endsWith('.dff')) {
+                                if (lower.startsWith('veg_') && palmDff) {
+                                    fallbackData = palmDff;
+                                    sectors = palmSectors;
+                                } else {
+                                    fallbackData = genericDff;
+                                    sectors = dffSectors;
+                                }
+                            } else if (lower.endsWith('.txd')) {
+                                fallbackData = genericTxd;
+                                sectors = txdSectors;
+                            } else if (lower.endsWith('.ifp') && genericIfp) {
+                                fallbackData = genericIfp;
+                                sectors = ifpSectors;
+                            }
+
+                            if (fallbackData) {
+                                Module.FS.createDataFile(imgPath, name, fallbackData, true, true, false);
+                                dataView.setUint32(i + 4, sectors, true);
+                                worldHealed++;
+                            }
+                        }
+                    }
+                    console.log(`[AssetHealer] Successfully healed all ${worldHealed} remaining world & map models in gta3.dir!`);
+                }
+
+                // Save patched gta3.dir back to VFS
+                if (dirData) {
+                    Module.FS.writeFile(dirPath, dirData);
+                }
+                console.log('[AssetHealer] Universal Asset Healing completed successfully.');
+            } catch (healErr) {
+                console.warn('[AssetHealer] Error initializing fallbacks:', healErr);
             }
 
             // MOD MANAGER INJECTION WITH gta3.dir PATCHING
